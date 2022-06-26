@@ -1,0 +1,27 @@
+SearchFolder = function(folder, necessaryFolder)
+	if folder.path == necessaryFolder  then return folder
+
+	folders = folder.get_folders()
+	for _folder in folders
+		if _folder.path == necessaryFolder then return _folder
+		result = SearchFolder(_folder, necessaryFolder)
+		if result.path == necessaryFolder then
+			return result
+		end if
+	end for
+
+end function
+
+SearchFile = function(folder,necessaryFile)
+	files = folder.get_files
+	for file in files
+		if file.path == necessaryFile then return file
+	end for
+
+	folders = folder.get_folders
+	for _folder in folders
+		result = SearchFile(_folder,necessaryFile)
+		if result.path == necessaryFile then return result
+	end for
+
+end function
